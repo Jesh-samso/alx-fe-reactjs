@@ -1,5 +1,7 @@
-import { createContext } from "react";
+import UserDetails from './UserDetails';
 
-const UserContext = createContext();
+function UserInfo() {
+  return <UserDetails />;
+}
 
-export default UserContext;
+export default UserInfo;

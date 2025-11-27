@@ -13,7 +13,7 @@ import UserContext from './UserContext';
 
 function App() {
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
-  const [count, setCount] = useState(0)
+  
 
   return (
     
@@ -26,10 +26,11 @@ function App() {
         age="25"
         bio="Loves hiking and photography"
       /> 
-      <UserContext.Provider value={userData}>
+      
+     <MainContent /> 
+     <UserContext.Provider value={userData}>
       <ProfilePage />
     </UserContext.Provider>
-     <MainContent /> 
      <Footer />   
       <div>
         <a href="https://vite.dev" target="_blank">
