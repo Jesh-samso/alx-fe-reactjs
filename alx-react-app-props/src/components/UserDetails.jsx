@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import UserContext from "./UserContext"; 
+ 
 
 function UserDetails() {
   // Consume the context instead of props
