@@ -9,7 +9,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Counter from "../../alx-react-app-new/src/components/Counter";
 import ProfilePage from './components/ProfilePage';
-import UserContext from './userContext';
+import UserContext from './UserContext';
 
 function App() {
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
