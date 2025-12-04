@@ -1,16 +1,21 @@
-import SearchBar from './components/SearchBar';
-import RecipeList from './components/RecipeList';
-import AddRecipeForm from './components/AddRecipeForm';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
+import SearchBar from "./components/SearchBar";
+import RecipeList from "./components/RecipeList";
+import AddRecipeForm from "./components/AddRecipeForm";
+
+
+const RecipeDetailWrapper = () => {
+const { id } = useParams();
+return <div>Recipe Detail Page for ID: {id}</div>;
+};
 
 function App() {
-  return (
-    <div style={{ padding: '20px' }}>
-      <h1>Recipe Sharing App</h1>
-      <AddRecipeForm />
-      <SearchBar />
-      <RecipeList />
-    </div>
-  );
+return ( <Router>
+<div style={{ padding: "20px" }}> <h1>Recipe Sharing App</h1> <AddRecipeForm /> <SearchBar /> <Routes>
+<Route path="/" element={<RecipeList />} />
+<Route path="/recipe/:id" element={<RecipeDetailWrapper />} /> </Routes> </div> </Router>
+);
 }
 
 export default App;
