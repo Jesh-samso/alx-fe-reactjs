@@ -1,4 +1,4 @@
-import { useRecipeStore } from "../recipeStore.js";
+import { useRecipeStore } from "./recipeStore.js";
 import { useEffect } from "react";
 
 const RecommendationsList = () => {
