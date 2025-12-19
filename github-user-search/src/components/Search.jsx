@@ -66,6 +66,7 @@ export default function Search() {
     } finally {
       setLoadingMore(false);
     }
+
   };
 
   return (
@@ -159,3 +160,4 @@ export default function Search() {
     </div>
   );
 }
+
