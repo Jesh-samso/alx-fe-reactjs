@@ -42,7 +42,6 @@ export default function Search() {
       setResults(detailed);
       setTotalCount(data.total_count || 0);
     } catch (err) {
-      console.error(err);
       setError("Failed to fetch users. You may have hit the GitHub rate limit.");
     } finally {
       setLoading(false);
@@ -61,7 +60,6 @@ export default function Search() {
       setPage(nextPage);
       setTotalCount(data.total_count || totalCount);
     } catch (err) {
-      console.error(err);
       setError("Failed to load more results.");
     } finally {
       setLoadingMore(false);
