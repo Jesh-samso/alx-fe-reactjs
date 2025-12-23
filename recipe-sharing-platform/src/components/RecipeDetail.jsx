@@ -12,15 +12,15 @@ function RecipeDetail() {
   }, [id]);
 
   if (!recipe) {
-    return <p className="text-center mt-10">Recipe not found</p>;
+    return <p className="text-center mt-10 text-gray-500">Recipe not found</p>;
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
       <img
         src={recipe.image}
         alt={recipe.title}
-        className="w-full h-64 object-cover rounded-lg mb-6"
+        className="w-full h-64 object-cover rounded-lg mb-6 shadow-md"
       />
 
       <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
