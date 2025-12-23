@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import recipesData from "../data.json";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
@@ -16,7 +17,8 @@ function HomePage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
-          <div
+          <Link
+            to={`/recipe/${recipe.id}`}
             key={recipe.id}
             className="bg-white rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300"
           >
@@ -26,14 +28,10 @@ function HomePage() {
               className="w-full h-40 object-cover rounded-t-lg"
             />
             <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">
-                {recipe.title}
-              </h2>
-              <p className="text-gray-600 text-sm">
-                {recipe.summary}
-              </p>
+              <h2 className="text-xl font-semibold mb-2">{recipe.title}</h2>
+              <p className="text-gray-600 text-sm">{recipe.summary}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
