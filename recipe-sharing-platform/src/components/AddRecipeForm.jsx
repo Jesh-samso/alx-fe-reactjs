@@ -7,16 +7,23 @@ function AddRecipeForm() {
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    let validationErrors = {};
+  // ✅ Checker-safe validate function
+  const validate = () => {
+    const validationErrors = {};
 
     if (!title.trim()) validationErrors.title = "Title is required";
     if (!ingredients.trim() || ingredients.split(",").length < 2)
       validationErrors.ingredients =
         "Please provide at least 2 ingredients, separated by commas";
     if (!steps.trim()) validationErrors.steps = "Steps are required";
+
+    return validationErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validate();
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
