@@ -3,7 +3,7 @@ import { useState } from "react";
 function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
+  const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
 
@@ -16,7 +16,7 @@ function AddRecipeForm() {
     if (!ingredients.trim() || ingredients.split(",").length < 2)
       validationErrors.ingredients =
         "Please provide at least 2 ingredients, separated by commas";
-    if (!instructions.trim()) validationErrors.instructions = "Instructions are required";
+    if (!steps.trim()) validationErrors.steps = "Steps are required";
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -24,8 +24,8 @@ function AddRecipeForm() {
       return;
     }
 
-    // Here we would normally send data to backend
-    console.log({ title, ingredients, instructions });
+    // Normally here we would send data to backend
+    console.log({ title, ingredients, steps });
 
     setErrors({});
     setSuccess(true);
@@ -33,7 +33,7 @@ function AddRecipeForm() {
     // Clear form
     setTitle("");
     setIngredients("");
-    setInstructions("");
+    setSteps("");
   };
 
   return (
@@ -68,16 +68,14 @@ function AddRecipeForm() {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Instructions</label>
+          <label className="block mb-1 font-medium">Steps</label>
           <textarea
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
             rows="4"
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          {errors.instructions && (
-            <p className="text-red-500 text-sm mt-1">{errors.instructions}</p>
-          )}
+          {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
         </div>
 
         <button
