@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const TodoList = () => {
-  const [todos, setTodos] = useState([
-    { text: "Learn React", completed: false },
-    { text: "Write Tests", completed: false },
-  ]);
-  const [newTodo, setNewTodo] = useState("");
+  const [todos, setTodos] = useState(["Learn React", "Write Tests"]);
+  const [input, setInput] = useState("");
 
-  const addTodo = (e) => {
-    e.preventDefault();
-    if (newTodo.trim() === "") return;
-    setTodos([...todos, { text: newTodo.trim(), completed: false }]);
-    setNewTodo("");
+  const addTodo = () => {
+    if (!input.trim()) return;
+    setTodos([...todos, input]);
+    setInput("");
   };
 
   const toggleTodo = (index) => {
     setTodos(
       todos.map((todo, i) =>
-        i === index ? { ...todo, completed: !todo.completed } : todo
+        i === index
+          ? { text: todo.text || todo, completed: !todo.completed }
+          : todo
       )
     );
   };
@@ -28,32 +26,37 @@ const TodoList = () => {
 
   return (
     <div>
-      <h1>Todo List</h1>
-      <form onSubmit={addTodo}>
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add new todo"
-        />
-        <button type="submit">Add</button>
-      </form>
+      <input
+        placeholder="Add todo"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button onClick={addTodo}>Add</button>
+
       <ul>
-        {todos.map((todo, i) => (
-          <li
-            key={i}
-            onClick={() => toggleTodo(i)}
-            style={{
-              textDecoration: todo.completed ? "line-through" : "none",
-              cursor: "pointer",
-            }}
-          >
-            {todo.text}{" "}
-            <button onClick={(e) => { e.stopPropagation(); deleteTodo(i); }}>
-              Delete
-            </button>
-          </li>
-        ))}
+        {todos.map((todo, index) => {
+          const text = todo.text || todo;
+          const completed = todo.completed;
+
+          return (
+            <li
+              key={index}
+              onClick={() => toggleTodo(index)}
+              style={{
+                textDecoration: completed ? "line-through" : "none",
+                cursor: "pointer",
+              }}
+            >
+              {text}
+              <button onClick={(e) => {
+                e.stopPropagation();
+                deleteTodo(index);
+              }}>
+                Delete
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
